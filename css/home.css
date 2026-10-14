@@ -1,0 +1,633 @@
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap');
+
+/* General Settings */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: #ecf0f0;
+}
+
+/* Navbar */
+
+.navbar {
+    width: 100%;
+    min-height: 85px;
+    padding: 15px 5%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+
+    border-bottom: 1px solid #DCECE7;
+}
+
+/* Logo */
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    
+}
+
+.logo img {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.logo h2 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 25px;
+    font-weight: 700;
+    color: #134E4A;
+}
+
+.logo h2 span {
+    color: #0D9488;
+}
+
+/* Navbar Links */
+
+.links ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    list-style: none;
+}
+
+.links ul li a {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #134E4A;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.3s ease;
+}
+
+.links ul li a:hover {
+    color: #0D9488;
+}
+
+/* Navbar Buttons */
+
+.button-nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0; /*بتمنع العنصر من الانكماش.*/
+}
+
+.button-nav a {
+    display: inline-block;
+    padding: 12px 18px;
+    border-radius: 9px;
+
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/* Log In Button */
+
+.button1 {
+   
+    background-color: #E5F5F0;
+    color: #0D9488;
+
+}
+
+.button1:hover {
+    background-color: #D0EEE6;
+}
+
+/* Sign Up Button */
+
+.button2 {
+    background-color: #E5F5F0;
+    color: #0D9488;
+}
+
+.button2:hover {
+    background-color: #D0EEE6;
+}
+
+/* Book Now Button */
+
+.button3 {
+    background-color: #0D9488;
+    color: #FFFFFF;
+}
+
+.button3:hover {
+    background-color: #0F766E;
+    transform: translateY(-2px);
+}
+
+
+
+
+/*
+   Hero Section
+*/
+
+.hero {
+    width: 95%;
+    max-width: 1800px;
+    margin: 0 auto;
+    padding: 70px 2%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 70px;
+}
+
+/*
+   Left Side - Hero Content
+*/
+
+.hero-content {
+    flex: 1;
+    min-width: 0;
+    max-width: 750px;
+}
+
+/* Small Text Above Title */
+
+.hero-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #0D9488;
+    margin-bottom: 25px;
+}
+
+/* Main Title */
+
+.hero-content h1 {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(45px, 5vw, 78px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -2px;
+    color: #173F3B;
+    margin-bottom: 28px;
+}
+
+.hero-content h1 span {
+    display: block;
+    color: #0D9488;
+}
+
+/* Description */
+
+.hero-description {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 1.8;
+    color: #64817E;
+    margin-bottom: 35px;
+}
+
+/*
+   Hero Buttons
+*/
+
+.hero-buttons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 38px;
+}
+
+.hero-buttons a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px 25px;
+
+    font-family: 'DM Sans', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 14px;
+    white-space: nowrap;
+
+    transition: all 0.3s ease;
+}
+
+/* Book Your Visit */
+
+.hero-btn-primary {
+    background-color: #0D9488;
+    color: #FFFFFF;
+}
+
+.hero-btn-primary:hover {
+    background-color: #0F766E;
+    transform: translateY(-3px);
+}
+
+/* Explore Live Queue */
+
+.hero-btn-secondary {
+    background-color: #E3F4F0;
+    color: #087F77;
+}
+
+.hero-btn-secondary:hover {
+    background-color: #D0ECE6;
+}
+
+/*
+   Hero Features
+*/
+
+.hero-features {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.hero-features span {
+    background-color: #E3F4F0;
+    color: #087F77;
+
+    padding: 10px 15px;
+    border-radius: 30px;
+
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+/*
+   Right Side - Museum Image
+*/
+
+.hero-image {
+    min-width: 0;
+    max-width: 800px;
+    height: 400px;
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    border-radius: 45px;
+    display: block;
+}
+
+
+
+/*   about museum */
+
+.about{
+    width: 95%;
+    max-width: 1800px;
+    margin: 0 auto;
+    padding: 70px 2%;
+}
+
+.about-p1{
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #0D9488;
+    margin-bottom: 10px;
+}
+.about-p2{
+        color: #134E4A;
+        margin-bottom: 10px;
+
+}
+.about h2{
+    color: black;
+    margin-bottom: 10px;
+}
+
+.cards{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.card1 , .card2,.card3 ,.card4{
+    border-radius: 10px;
+    width: 300px;
+    height: 150px;
+    padding: 10px;
+    background-color: white;
+     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    
+}
+
+.cards p{
+    color: #087F77;
+    margin-top: 10px;
+}
+.cards h4{
+    color: black;
+    margin-top: 20px;
+}
+
+.explore{
+     width: 95%;
+    max-width: 1800px;
+    margin: 0 auto;
+    padding: 70px 2%;
+}
+.explore-p1{
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #0D9488;
+            margin-bottom: 10px;
+
+}
+
+.explore h2{
+        margin-bottom: 10px;
+
+}
+
+.explore-p2{
+    color: #134E4A;
+     margin-bottom: 10px;
+       font-family: 'DM Sans', sans-serif;
+    font-size: 17px;
+}
+.explore-p2 span{
+    font-weight: 600;
+}
+
+/* Activities Container */
+
+.activity {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 60px;
+    width: 75%;
+    margin: 40px auto;
+}
+
+/* Activity Cards */
+
+.activity  div {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+
+}
+.activity  div:hover {
+    transform: translateY(-8px);
+}
+
+/* Activity Images */
+
+.activity img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    display: block;
+}
+
+/* Activity Titles */
+
+.activity h3 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 20px;
+    color: #134E4A;
+    margin: 15px 15px 10px;
+}
+
+/* Activity Descriptions */
+
+.activity p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: #64817E;
+    margin: 0 15px 20px;
+}
+
+
+
+/* How It Works Section */
+
+.work {
+    width: 80%;
+    margin: 60px auto;
+}
+
+/* Section Heading */
+
+.work > h2 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: #134E4A;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.work > p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 17px;
+    color: #64817E;
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+/* Cards Container */
+
+.card-work {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+/* All Cards */
+
+.card-work > div {
+    background-color: #FFFFFF;
+    padding: 22px;
+    border-radius: 18px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.card-work  div:hover {
+    transform: translateY(-6px);
+}
+
+/* Number Circle */
+
+.number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+
+    background-color: #D8F3EF;
+    color: #087F77;
+
+    font-size: 18px;
+    font-weight: 700;
+}
+
+/* Icons */
+
+.work-icon {
+    background-color: #FFFFFF;
+    font-size: 32px;
+    margin-top: 18px;
+    margin-bottom: 12px;
+}
+
+/* Card Titles */
+
+.card-work h3 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 21px;
+    font-weight: 700;
+    color: #134E4A;
+    margin-bottom: 12px;
+}
+
+/* Card Descriptions */
+
+.card-work p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #64817E;
+    text-align: left;
+    margin-bottom: 0;
+}
+
+
+.ready{
+     font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    
+    background-color:#173F3B;
+    
+     width: 80%;
+    margin: 0 auto;
+    padding: 20px 5%;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    
+}
+
+.ready h1{
+    margin-bottom: 10px;
+    color: white;
+
+}
+.ready p{
+        margin-bottom: 20px;
+        color:#64817E;
+
+
+}
+.ready-book-btn{
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #087F77;
+
+    display: inline-block;
+    transition: transform 0.3s ease;
+    
+}
+
+.ready-book-btn:hover{
+       transform: scale(1.1);
+}
+
+
+/* Footer */
+
+.the-footer {
+    margin-top: 60px;
+    padding: 25px 5%;
+    background-color: #134E4A;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+
+    font-family: 'DM Sans', sans-serif;
+}
+
+/* Footer Logo */
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.footer-logo img {
+    width: 45px;
+    height: 45px;
+    
+}
+
+.footer-logo h2 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+    margin: 0;
+}
+
+.footer-logo span {
+    color: #5EEAD4;
+}
+
+/* Footer Text */
+
+.the-footer p {
+    font-size: 14px;
+    font-weight: 400;
+    color: #D8F3EF;
+    line-height: 1.6;
+    margin: 0;
+    text-align: right;
+}
