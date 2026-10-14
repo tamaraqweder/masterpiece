@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Bookings | Smart Queue</title>
+
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/booking.css">
+    <link rel="stylesheet" href="../css/my-bookings.css">
+
+    <script src="../js/my-bookings.js" defer></script>
+</head>
+
+<body>
+
+    <div class="visitor-layout">
+
+        <!-- Sidebar -->
+        <aside class="visitor-sidebar">
+
+            <a href="../index.html" class="visitor-logo">
+                <img src="../asstes/imgs/logo.png" alt="Smart Queue Logo">
+                <h2>Smart<span>Queue</span></h2>
+            </a>
+
+            <p class="sidebar-label">VISITOR PORTAL</p>
+
+            <nav class="sidebar-links">
+                <a href="booking.html">
+                    <span>📅</span> Book a Visit
+                </a>
+
+                <a href="my-bookings.html" class="active" aria-current="page">
+                    <span>🎟️</span> My Bookings
+                </a>
+
+                <a href="live-queue.html">
+                    <span>⏳</span> Live Queue
+                </a>
+
+                <a href="profile.html">
+                    <span>👤</span> My Profile
+                </a>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <a href="../index.html">← Back to Home</a>
+                <a href="../pages/login.html">Log Out</a>
+            </div>
+
+        </aside>
+
+        <!-- Main Content -->
+        <main class="visitor-main">
+
+            <header class="visitor-header">
+
+                <div>
+                    <p class="page-label">VISITOR PORTAL</p>
+                    <h1>My Bookings</h1>
+                    <p class="page-description">
+                        View and manage your museum visit reservations.
+                    </p>
+                </div>
+
+                <div class="visitor-avatar">V</div>
+
+            </header>
+
+            <!-- Statistics -->
+            <section class="booking-stats">
+
+                <div class="stat-card">
+                    <p>Total Bookings</p>
+                    <h2 id="total-bookings">0</h2>
+                </div>
+
+                <div class="stat-card">
+                    <p>Confirmed</p>
+                    <h2 id="confirmed-bookings">0</h2>
+                </div>
+
+                <div class="stat-card">
+                    <p>Cancelled</p>
+                    <h2 id="cancelled-bookings">0</h2>
+                </div>
+
+            </section>
+
+            <!-- Bookings -->
+            <section class="bookings-section">
+
+                <div class="bookings-heading">
+                    <div>
+                        <h2>Your Reservations</h2>
+                        <p>All your saved demo museum bookings.</p>
+                    </div>
+
+                    <a href="booking.html" class="new-booking-btn">
+                        + New Booking
+                    </a>
+                </div>
+
+                <p id="bookings-message" role="status"></p>
+
+                <!-- JavaScript adds booking cards here -->
+                <div id="bookings-container" class="bookings-container"></div>
+
+                <!-- Empty State -->
+                <div id="empty-bookings" class="empty-bookings" hidden>
+                    <div class="empty-icon">🎟️</div>
+                    <h3>No Bookings Yet</h3>
+                    <p>
+                        You haven't made any museum reservations yet.
+                    </p>
+
+                    <a href="booking.html" class="new-booking-btn">
+                        Book Your First Visit →
+                    </a>
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+</body>
+</html>

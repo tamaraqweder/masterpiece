@@ -1,0 +1,246 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Live Queue | Smart Queue</title>
+
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/booking.css">
+    <link rel="stylesheet" href="../css/live-queue.css">
+
+    <script src="../js/live-queue.js" defer></script>
+</head>
+
+<body>
+
+    <div class="visitor-layout">
+
+        <!-- Sidebar -->
+        <aside class="visitor-sidebar">
+
+            <a href="../index.html" class="visitor-logo">
+                <img src="../asstes/imgs/logo.png" alt="Smart Queue Logo">
+                <h2>Smart<span>Queue</span></h2>
+            </a>
+
+            <p class="sidebar-label">VISITOR PORTAL</p>
+
+            <nav class="sidebar-links">
+
+                <a href="booking.html">
+                    <span>📅</span> Book a Visit
+                </a>
+
+                <a href="my-bookings.html">
+                    <span>🎟️</span> My Bookings
+                </a>
+
+                <a href="live-queue.html"
+                   class="active"
+                   aria-current="page">
+                    <span>⏳</span> Live Queue
+                </a>
+
+                <a href="profile.html">
+                    <span>👤</span> My Profile
+                </a>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+                <a href="../index.html">← Back to Home</a>
+                <a href="../pages/login.html">Log Out</a>
+            </div>
+
+        </aside>
+
+        <!-- Main Content -->
+        <main class="visitor-main">
+
+            <!-- Page Header -->
+            <header class="visitor-header">
+
+                <div>
+                    <p class="page-label">VISITOR PORTAL</p>
+
+                    <h1>Live Queue</h1>
+
+                    <p class="page-description">
+                        Track your place in the museum queue.
+                    </p>
+                </div>
+
+                <div class="visitor-avatar">V</div>
+
+            </header>
+
+            <!-- Demo Notice -->
+            <div class="queue-notice">
+                <span>ℹ️</span>
+
+                <p>
+                    Demo mode: queue numbers are simulated.
+                    This page is not connected to the museum's
+                    actual queue.
+                </p>
+            </div>
+
+            <!-- Select Booking -->
+            <section class="queue-select-card">
+
+                <div>
+                    <h2>Select Your Booking</h2>
+
+                    <p>
+                        Choose a confirmed booking to track your queue.
+                    </p>
+                </div>
+
+                <select id="queue-booking-select">
+                    <option value="">Select a booking</option>
+                </select>
+
+            </section>
+
+            <!-- No Booking -->
+            <section id="queue-empty" class="queue-empty">
+
+                <div class="queue-empty-icon">🎟️</div>
+
+                <h2>No Active Booking Selected</h2>
+
+                <p>
+                    Make a booking first, then return here
+                    to view your queue information.
+                </p>
+
+                <a href="booking.html" class="queue-primary-btn">
+                    Book a Visit →
+                </a>
+
+            </section>
+
+            <!-- Queue Dashboard -->
+            <div id="queue-dashboard" hidden>
+
+                <!-- Queue Statistics -->
+                <section class="queue-stats">
+
+                    <article class="queue-stat-card">
+                        <p>Your Queue Number</p>
+                        <h2 id="your-queue-number">--</h2>
+                        <span>Your demo queue position</span>
+                    </article>
+
+                    <article class="queue-stat-card">
+                        <p>Now Serving</p>
+                        <h2 id="now-serving">--</h2>
+                        <span>Current demo queue number</span>
+                    </article>
+
+                    <article class="queue-stat-card">
+                        <p>Groups Ahead</p>
+                        <h2 id="groups-ahead">--</h2>
+                        <span>Groups before your turn</span>
+                    </article>
+
+                </section>
+
+                <!-- Queue Progress -->
+                <section class="queue-progress-card">
+
+                    <div class="queue-section-heading">
+
+                        <div>
+                            <p class="queue-eyebrow">
+                                QUEUE PROGRESS
+                            </p>
+
+                            <h2>Your Queue Progress</h2>
+                        </div>
+
+                        <span id="queue-status" class="queue-status">
+                            Waiting
+                        </span>
+
+                    </div>
+
+                    <!-- Progress Bar -->
+                    <div
+                        class="queue-progress-track"
+                        id="queue-progress-track"
+                        role="progressbar"
+                        aria-label="Demo queue progress"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                        aria-valuenow="0">
+
+                        <div id="queue-progress-fill"></div>
+
+                    </div>
+
+                    <div class="queue-progress-labels">
+                        <span>Queue started</span>
+                        <strong id="queue-progress-percent">0%</strong>
+                        <span>Your turn</span>
+                    </div>
+
+                    <!-- Queue Message -->
+                    <p
+                        id="queue-update-message"
+                        class="queue-update-message"
+                        role="status">
+                        Your queue information is ready.
+                    </p>
+
+                    <p class="queue-helper">
+                        Queue progress is read-only for visitors.
+                        In the full system, museum staff will
+                        manage queue updates after check-in.
+                    </p>
+
+                </section>
+
+                <!-- Booking Details -->
+                <section class="queue-details-card">
+
+                    <h2>Your Visit Details</h2>
+
+                    <div class="queue-details-grid">
+
+                        <div>
+                            <p>Booking ID</p>
+                            <strong id="queue-booking-id">--</strong>
+                        </div>
+
+                        <div>
+                            <p>Visit Date</p>
+                            <strong id="queue-visit-date">--</strong>
+                        </div>
+
+                        <div>
+                            <p>Visit Time</p>
+                            <strong id="queue-visit-time">--</strong>
+                        </div>
+
+                        <div>
+                            <p>Visitors</p>
+                            <strong id="queue-visitors">--</strong>
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+        </main>
+
+    </div>
+
+</body>
+</html>

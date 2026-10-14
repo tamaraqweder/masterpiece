@@ -1,0 +1,218 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Book a Visit | Smart Queue</title>
+
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/booking.css">
+
+    <script src="../js/booking.js" defer></script>
+</head>
+
+<body>
+
+    <div class="visitor-layout">
+
+        <!-- Sidebar -->
+        <aside class="visitor-sidebar">
+
+            <a href="../index.html" class="visitor-logo">
+                <img src="../asstes/imgs/logo.png" alt="Smart Queue Logo">
+                <h2>Smart<span>Queue</span></h2>
+            </a>
+
+            <p class="sidebar-label">VISITOR PORTAL</p>
+
+            <nav class="sidebar-links">
+
+                <a href="booking.html" class="active" aria-current="page">
+                    <span>📅</span> Book a Visit
+                </a>
+
+                <a href="my-bookings.html">
+                    <span>🎟️</span> My Bookings
+                </a>
+
+                <a href="live-queue.html">
+                    <span>⏳</span> Live Queue
+                </a>
+
+                <a href="profile.html">
+                    <span>👤</span> My Profile
+                </a>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+                <a href="../index.html">← Back to Home</a>
+                <a href="../pages/login.html">Log Out</a>
+            </div>
+
+        </aside>
+
+        <!-- Main Content -->
+        <main class="visitor-main">
+
+            <!-- Header -->
+            <header class="visitor-header">
+
+                <div>
+                    <p class="page-label">VISITOR PORTAL</p>
+
+                    <h1>Book Your Visit</h1>
+
+                    <p class="page-description">
+                        Choose your preferred date, time, and group size.
+                    </p>
+                </div>
+
+                <div class="visitor-avatar">V</div>
+
+            </header>
+
+            <div class="booking-grid">
+
+                <!-- Booking Form -->
+                <section class="booking-card">
+
+                    <h2>Visit Details</h2>
+
+                    <p class="card-description">
+                        Fill in the details below to reserve your visit.
+                    </p>
+
+                    <form id="booking-form">
+
+                        <!-- Date -->
+                        <div class="form-group">
+                            <label for="visit-date">Visit Date</label>
+
+                            <input
+                                type="date"
+                                id="visit-date"
+                                required>
+                        </div>
+
+                        <!-- Visitors -->
+                        <div class="form-group">
+                            <label for="visitor-count">
+                                Number of Visitors
+                            </label>
+
+                            <input
+                                type="number"
+                                id="visitor-count"
+                                min="1"
+                                max="10"
+                                value="1"
+                                required>
+                        </div>
+
+                        <!-- Time -->
+                        <div class="form-group">
+                            <label for="visit-time">Preferred Time</label>
+
+                            <select id="visit-time" required>
+                                <option value="">Select a time</option>
+                                <option value="10:00 AM">10:00 AM</option>
+                                <option value="11:00 AM">11:00 AM</option>
+                                <option value="12:00 PM">12:00 PM</option>
+                                <option value="01:00 PM">01:00 PM</option>
+                                <option value="02:00 PM">02:00 PM</option>
+                            </select>
+
+                            <p id="slot-availability" role="status"></p>
+
+                            <small>
+                                Maximum capacity: 30 visitors per time slot.
+                                Demo availability only.
+                            </small>
+                        </div>
+
+                        <!-- Notes -->
+                        <div class="form-group">
+                            <label for="visitor-notes">
+                                Additional Notes (Optional)
+                            </label>
+
+                            <textarea
+                                id="visitor-notes"
+                                rows="4"
+                                maxlength="300"
+                                placeholder="Any special requests?"></textarea>
+                        </div>
+
+                        <!-- Message -->
+                        <p id="booking-message" role="status"></p>
+
+                        <!-- Submit -->
+                        <button type="submit" class="confirm-btn">
+                            Confirm Booking →
+                        </button>
+
+                    </form>
+
+                </section>
+
+                <!-- Booking Summary -->
+                <aside class="booking-summary">
+
+                    <h2>Booking Summary</h2>
+
+                    <div class="summary-row">
+                        <span>Museum</span>
+                        <strong>Children's Museum Jordan</strong>
+                    </div>
+
+                    <div class="summary-row">
+                        <span>Visit Date</span>
+                        <strong id="summary-date">Not selected</strong>
+                    </div>
+
+                    <div class="summary-row">
+                        <span>Visit Time</span>
+                        <strong id="summary-time">Not selected</strong>
+                    </div>
+
+                    <div class="summary-row">
+                        <span>Visitors</span>
+                        <strong id="summary-visitors">1 Visitor</strong>
+                    </div>
+
+                    <div class="summary-row">
+                        <span>Available Spots</span>
+                        <strong id="summary-available">Not selected</strong>
+                    </div>
+
+                    <div class="summary-info">
+
+                        <h3>How It Works</h3>
+
+                        <p>1. Choose your visit date.</p>
+                        <p>2. Select the number of visitors.</p>
+                        <p>3. Choose an available time slot.</p>
+                        <p>4. Confirm your demo booking.</p>
+                        <p>5. View your reservation in My Bookings.</p>
+
+                    </div>
+
+                    <p class="demo-note">
+                        This is a frontend demonstration.
+                        No official museum reservation is made.
+                    </p>
+
+                </aside>
+
+            </div>
+
+        </main>
+
+    </div>
+
+</body>
+</html>

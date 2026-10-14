@@ -125,3 +125,66 @@
     color: #64817E;
     font-size: 14px;
 }
+
+
+/* Tablet */
+@media (max-width: 992px) {
+    .login-section {
+        padding: 40px 20px;
+    }
+
+    .login-card {
+        max-width: 420px;
+        padding: 30px;
+    }
+
+    .login-card h1 {
+        font-size: 28px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .login-section {
+        min-height: 70vh;
+        padding: 30px 15px;
+    }
+
+    .login-card {
+        max-width: 100%;
+        padding: 25px 20px;
+        border-radius: 15px;
+    }
+
+    .login-card h1 {
+        font-size: 25px;
+    }
+
+    .login-subtitle {
+        font-size: 14px;
+    }
+
+    .input-group label {
+        font-size: 14px;
+    }
+
+    .input-group input {
+        padding: 12px;
+        font-size: 16px;
+    }
+
+    .login-options {
+        flex-wrap: wrap;
+        gap: 10px;
+        font-size: 13px;
+    }
+
+    .login-btn {
+        padding: 12px;
+        font-size: 15px;
+    }
+
+    .signup-text {
+        font-size: 13px;
+    }
+}
