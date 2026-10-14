@@ -1,0 +1,151 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sign Up | Smart Queue</title>
+
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/register.css">
+</head>
+
+<body>
+
+    <header>
+
+        <!-- Navbar -->
+        <nav class="navbar">
+
+            <!-- Logo -->
+            <a href="../index.html" class="logo">
+                <img src="../asstes/imgs/logo.png" alt="Smart Queue Logo">
+                <h2>Smart<span>Queue</span></h2>
+            </a>
+
+            <!-- Navigation Links -->
+            <div class="links">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#about">About Museum</a></li>
+                    <li><a href="../index.html#how-it-works">How It Works</a></li>
+                    <li><a href="login.html">Book A Visit</a></li>
+                </ul>
+            </div>
+
+            <!-- Navbar Buttons -->
+            <div class="button-nav">
+                <a href="login.html" class="button1">Log In</a>
+                <a href="register.html" class="button2">Sign Up</a>
+                <a href="../visitor/booking.html" class="button3">Book Now</a>
+            </div>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <!-- Register Section -->
+        <section class="register-section">
+
+            <div class="register-card">
+
+                <h1>Create an Account</h1>
+
+                <p class="register-subtitle">
+                    Join Smart Queue and make your museum visits easier.
+                </p>
+
+                <!-- Register Form -->
+                <form id="register-form" novalidate>
+
+                    <!-- Full Name -->
+                    <div class="input-group">
+                        <label for="full-name">Full Name</label>
+
+                        <input
+                            type="text"
+                            id="full-name"
+                            name="fullName"
+                            placeholder="Enter your full name">
+                    </div>
+
+                    <!-- Email -->
+                    <div class="input-group">
+                        <label for="email">Email Address</label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Enter your email">
+                    </div>
+
+                    <!-- Password -->
+                    <div class="input-group">
+                        <label for="password">Password</label>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Create a password">
+                    </div>
+
+                    <!-- Confirm Password -->
+                    <div class="input-group">
+                        <label for="confirm-password">Confirm Password</label>
+
+                        <input
+                            type="password"
+                            id="confirm-password"
+                            name="confirmPassword"
+                            placeholder="Confirm your password">
+                    </div>
+
+                    <!-- Validation Message -->
+                    <p id="register-message" role="status"></p>
+
+                    <!-- Sign Up Button -->
+                    <button type="submit" class="register-btn">
+                        Create Account →
+                    </button>
+
+                </form>
+
+                <!-- Login Link -->
+                <p class="login-text">
+                    Already have an account?
+                    <a href="login.html">Log In</a>
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="the-footer">
+
+        <a href="../index.html" class="footer-logo">
+            <img src="../asstes/imgs/logo.png" alt="Smart Queue Logo">
+            <h2>Smart<span>Queue</span></h2>
+        </a>
+
+        <p>
+            © 2026 Smart Queue. Making every museum visit easier,
+            faster, and more enjoyable.
+        </p>
+
+    </footer>
+
+    <script src="../js/register.js"></script>
+
+</body>
+</html>

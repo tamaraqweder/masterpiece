@@ -1,0 +1,200 @@
+
+/* Register Section */
+
+.register-section {
+    min-height: 80vh;
+    background-color: #E5F5F0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 60px 20px;
+}
+
+/* Register Card */
+
+.register-card {
+    background-color: white;
+    width: 100%;
+    max-width: 470px;
+    padding: 40px;
+
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+
+    box-sizing: border-box;
+}
+
+/* Heading */
+
+.register-card h1 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 32px;
+    color: #134E4A;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.register-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    color: #64817E;
+    text-align: center;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+/* Input Groups */
+
+.register-card .input-group {
+    margin-bottom: 20px;
+}
+
+.register-card .input-group label {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #134E4A;
+    margin-bottom: 8px;
+}
+
+/* Inputs */
+
+.register-card .input-group input {
+    width: 100%;
+    padding: 13px;
+
+    border: 1px solid #D5E5E0;
+    border-radius: 10px;
+
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+
+    box-sizing: border-box;
+}
+
+.register-card .input-group input:focus {
+    outline: none;
+    border-color: #0D9488;
+}
+
+/* Validation Message */
+
+#register-message {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    margin-bottom: 15px;
+    color: #C0392B;
+}
+
+/* Register Button */
+
+.register-btn {
+    display: inline-block;
+    width: 100%;
+    padding: 14px;
+
+    background-color: #0D9488;
+    color: white;
+
+    border: none;
+    border-radius: 10px;
+
+    font-family: 'DM Sans', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.register-btn:hover {
+    transform: scale(1.03);
+}
+
+/* Login Link */
+
+.login-text {
+    margin-top: 25px;
+    text-align: center;
+
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: #64817E;
+}
+
+.login-text a {
+    color: #087F77;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.login-text a:hover {
+    text-decoration: underline;
+}
+
+
+
+
+/* Tablet */
+
+@media (max-width: 992px) {
+
+    .register-section {
+        padding: 40px 20px;
+    }
+
+    .register-card {
+        max-width: 420px;
+        padding: 30px;
+    }
+
+    .register-card h1 {
+        font-size: 28px;
+    }
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .register-section {
+        min-height: 70vh;
+        padding: 30px 15px;
+    }
+
+    .register-card {
+        width: 100%;
+        padding: 25px 20px;
+        border-radius: 15px;
+    }
+
+    .register-card h1 {
+        font-size: 25px;
+    }
+
+    .register-subtitle {
+        font-size: 14px;
+    }
+
+    .register-card .input-group label {
+        font-size: 14px;
+    }
+
+    .register-card .input-group input {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .register-btn {
+        padding: 12px;
+        font-size: 15px;
+    }
+
+    .login-text {
+        font-size: 13px;
+    }
+}

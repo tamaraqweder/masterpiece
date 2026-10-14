@@ -1,0 +1,127 @@
+
+/* Login Section */
+
+.login-section {
+    min-height: 80vh;
+    background-color: #E5F5F0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 60px 20px;
+}
+
+/* Login Card */
+
+.login-card {
+    background-color: white;
+    width: 100%;
+    max-width: 450px;
+    padding: 40px;
+
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* Heading */
+
+.login-card h1 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 32px;
+    color: #134E4A;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.login-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    color: #64817E;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Input Fields */
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    color: #134E4A;
+    margin-bottom: 8px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #D5E5E0;
+    border-radius: 10px;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #0D9488;
+}
+
+/* Remember Me and Forgot Password */
+
+.login-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.login-options a,
+.signup-text a {
+    color: #087F77;
+    text-decoration: none;
+}
+
+/* Error Message */
+
+#login-error {
+    color: #C0392B;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+/* Login Button */
+
+.login-btn {
+    width: 100%;
+    padding: 14px;
+
+    background-color: #0D9488;
+    color: white;
+
+    border: none;
+    border-radius: 10px;
+
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+
+    transition: transform 0.3s ease;
+}
+
+.login-btn:hover {
+    transform: scale(1.03);
+}
+
+/* Sign Up */
+
+.signup-text {
+    margin-top: 25px;
+    text-align: center;
+    color: #64817E;
+    font-size: 14px;
+}
