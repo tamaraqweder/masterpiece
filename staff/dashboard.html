@@ -1,0 +1,326 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Staff Dashboard | Smart Queue</title>
+
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/booking.css">
+    <link rel="stylesheet" href="../css/staff.css">
+
+    <!-- QR Code Scanner Library -->
+    <script
+        src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"
+        defer>
+    </script>
+
+    <!-- Staff JavaScript -->
+    <script src="../js/staff.js" defer></script>
+</head>
+
+<body>
+
+    <div class="visitor-layout">
+
+        <!-- Sidebar -->
+        <aside class="visitor-sidebar">
+
+            <a href="../index.html" class="visitor-logo">
+                <img src="../asstes/imgs/logo.png" alt="Smart Queue">
+                <h2>Smart<span>Queue</span></h2>
+            </a>
+
+            <p class="sidebar-label">STAFF PORTAL</p>
+
+            <nav class="sidebar-links">
+                <a href="dashboard.html" class="active" aria-current="page">
+                    📊 Dashboard
+                </a>
+
+                <a href="#reservations">
+                    🎟️ Reservations
+                </a>
+
+                <a href="#qr-checkin">
+                    📷 QR Check-in
+                </a>
+
+                <a href="#queue-management">
+                    ⏳ Queue Management
+                </a>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <a href="../index.html">← Back to Home</a>
+                <a href="../pages/login.html">Log Out</a>
+            </div>
+
+        </aside>
+
+        <!-- Main Content -->
+        <main class="visitor-main">
+
+            <!-- Header -->
+            <header class="visitor-header">
+
+                <div>
+                    <p class="page-label">STAFF PORTAL</p>
+
+                    <h1>Staff Dashboard</h1>
+
+                    <p class="page-description">
+                        Manage visitor check-ins and queue progress.
+                    </p>
+                </div>
+
+                <div class="visitor-avatar">S</div>
+
+            </header>
+
+            <!-- Demo Notice -->
+            <div class="staff-demo-notice">
+                Demo mode: reservations and queue updates work
+                only with data saved in this browser.
+            </div>
+
+            <!-- Statistics -->
+            <section class="staff-stats">
+
+                <article class="staff-stat">
+                    <p>Total Reservations</p>
+                    <h2 id="total-reservations">0</h2>
+                </article>
+
+                <article class="staff-stat">
+                    <p>Confirmed</p>
+                    <h2 id="confirmed-reservations">0</h2>
+                </article>
+
+                <article class="staff-stat">
+                    <p>Checked In</p>
+                    <h2 id="checked-in-count">0</h2>
+                </article>
+
+                <article class="staff-stat">
+                    <p>Completed</p>
+                    <h2 id="completed-count">0</h2>
+                </article>
+
+            </section>
+
+            <!-- Reservations Section -->
+            <section class="staff-card" id="reservations">
+
+                <div class="staff-section-header">
+
+                    <div>
+                        <h2>Visitor Reservations</h2>
+                        <p>Check in visitors when they arrive.</p>
+                    </div>
+
+                    <button
+                        id="refresh-btn"
+                        class="staff-secondary-btn"
+                        type="button">
+                        Refresh
+                    </button>
+
+                </div>
+
+                <div class="staff-filter">
+
+                    <label for="reservation-filter">
+                        Filter by Status
+                    </label>
+
+                    <select id="reservation-filter">
+                        <option value="All">All Reservations</option>
+                        <option value="Confirmed">Confirmed</option>
+                        <option value="Checked In">Checked In</option>
+                        <option value="Completed">Completed</option>
+                        <option value="Cancelled">Cancelled</option>
+                    </select>
+
+                </div>
+
+                <div class="staff-table-wrap">
+
+                    <table class="staff-table">
+
+                        <thead>
+                            <tr>
+                                <th>Booking ID</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Visitors</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="reservations-body"></tbody>
+
+                    </table>
+
+                </div>
+
+                <p
+                    id="reservations-empty"
+                    class="staff-empty"
+                    hidden>
+                    No reservations found.
+                </p>
+
+            </section>
+
+            <!-- QR Code Check-in Section -->
+            <section class="staff-card" id="qr-checkin">
+
+                <div class="staff-section-header">
+
+                    <div>
+                        <h2>QR Code Check-in</h2>
+
+                        <p>
+                            Scan a visitor's QR code or enter
+                            their booking ID to check them in.
+                        </p>
+                    </div>
+
+                </div>
+
+                <!-- Manual Booking ID -->
+                <div class="staff-filter">
+
+                    <label for="checkin-booking-id">
+                        Booking ID
+                    </label>
+
+                    <input
+                        type="text"
+                        id="checkin-booking-id"
+                        placeholder="Example: SQ-123456789"
+                        autocomplete="off">
+
+                </div>
+
+                <!-- Check-in Buttons -->
+                <div class="staff-checkin-actions">
+
+                    <button
+                        type="button"
+                        id="manual-checkin-btn"
+                        class="staff-primary-btn">
+                        Check In Visitor
+                    </button>
+
+                    <button
+                        type="button"
+                        id="start-scan-btn"
+                        class="staff-secondary-btn">
+                        📷 Start QR Scanner
+                    </button>
+
+                    <button
+                        type="button"
+                        id="stop-scan-btn"
+                        class="staff-secondary-btn"
+                        hidden>
+                        Stop Scanner
+                    </button>
+
+                </div>
+
+                <!-- QR Scanner Camera -->
+                <div id="qr-reader" hidden></div>
+
+                <!-- Check-in Result -->
+                <p
+                    id="checkin-result"
+                    role="status"
+                    aria-live="polite">
+                </p>
+
+            </section>
+
+            <!-- Queue Management Section -->
+            <section class="staff-card" id="queue-management">
+
+                <div class="staff-section-header">
+
+                    <div>
+                        <h2>Queue Management</h2>
+
+                        <p>
+                            Advance the demo queue for
+                            checked-in visitors.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="staff-filter">
+
+                    <label for="queue-booking-select">
+                        Select Checked-in Booking
+                    </label>
+
+                    <select id="queue-booking-select">
+                        <option value="">Select a booking</option>
+                    </select>
+
+                </div>
+
+                <!-- Queue Panel -->
+                <div id="staff-queue-panel" hidden>
+
+                    <div class="staff-queue-stats">
+
+                        <div>
+                            <span>Visitor Queue Number</span>
+                            <strong id="staff-position">--</strong>
+                        </div>
+
+                        <div>
+                            <span>Now Serving</span>
+                            <strong id="staff-serving">--</strong>
+                        </div>
+
+                        <div>
+                            <span>Groups Ahead</span>
+                            <strong id="staff-ahead">--</strong>
+                        </div>
+
+                    </div>
+
+                    <p
+                        id="staff-queue-message"
+                        role="status">
+                    </p>
+
+                    <button
+                        id="next-group-btn"
+                        class="staff-primary-btn"
+                        type="button">
+                        Call Next Group →
+                    </button>
+
+                </div>
+
+                <p id="staff-no-queue" class="staff-empty">
+                    Check in a visitor to manage their demo queue.
+                </p>
+
+            </section>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,241 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Smart Queue</title>
+
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/booking.css">
+    <link rel="stylesheet" href="../css/admin.css">
+
+    <script src="../js/admin.js" defer></script>
+</head>
+<body>
+
+<div class="visitor-layout">
+
+    <!-- Sidebar -->
+    <aside class="visitor-sidebar">
+
+        <a href="../index.html" class="visitor-logo">
+            <img src="../asstes/imgs/logo.png" alt="Smart Queue">
+            <h2>Smart<span>Queue</span></h2>
+        </a>
+
+        <p class="sidebar-label">ADMIN PORTAL</p>
+
+        <nav class="sidebar-links">
+            <a href="#overview" class="active">📊 Overview</a>
+            <a href="#reservations">🎟️ Reservations</a>
+            <a href="#capacity">📅 Time Slots</a>
+            <a href="#staff">👥 Staff Management</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <a href="../index.html">← Back to Home</a>
+            <a href="../pages/login.html">Log Out</a>
+        </div>
+
+    </aside>
+
+    <!-- Main -->
+    <main class="visitor-main">
+
+        <header class="visitor-header">
+            <div>
+                <p class="page-label">ADMIN PORTAL</p>
+                <h1>Admin Dashboard</h1>
+                <p class="page-description">
+                    Manage reservations, capacity, and staff.
+                </p>
+            </div>
+            <div class="visitor-avatar">A</div>
+        </header>
+
+        <div class="admin-notice">
+            Demo dashboard — changes are saved in this browser only.
+        </div>
+
+        <!-- Overview -->
+        <section id="overview">
+            <div class="admin-stats">
+
+                <article class="admin-stat">
+                    <p>Total Bookings</p>
+                    <h2 id="total-bookings">0</h2>
+                </article>
+
+                <article class="admin-stat">
+                    <p>Confirmed</p>
+                    <h2 id="confirmed-bookings">0</h2>
+                </article>
+
+                <article class="admin-stat">
+                    <p>Checked In</p>
+                    <h2 id="checked-in-bookings">0</h2>
+                </article>
+
+                <article class="admin-stat">
+                    <p>Cancelled</p>
+                    <h2 id="cancelled-bookings">0</h2>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- Reservations -->
+        <section class="admin-card" id="reservations">
+
+            <div class="admin-section-heading">
+                <div>
+                    <h2>Reservations</h2>
+                    <p>View and filter visitor bookings.</p>
+                </div>
+
+                <button id="admin-refresh" class="admin-secondary-btn">
+                    Refresh
+                </button>
+            </div>
+
+            <div class="admin-filter-row">
+                <input
+                    type="search"
+                    id="booking-search"
+                    placeholder="Search booking ID">
+
+                <select id="booking-status-filter">
+                    <option value="All">All Statuses</option>
+                    <option value="Confirmed">Confirmed</option>
+                    <option value="Checked In">Checked In</option>
+                    <option value="Completed">Completed</option>
+                    <option value="Cancelled">Cancelled</option>
+                </select>
+            </div>
+
+            <div class="admin-table-wrap">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Booking ID</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Visitors</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-bookings-body"></tbody>
+                </table>
+            </div>
+
+            <p id="admin-bookings-empty" class="admin-empty" hidden>
+                No bookings found.
+            </p>
+
+        </section>
+
+        <!-- Time Slot Capacity -->
+        <section class="admin-card" id="capacity">
+
+            <div class="admin-section-heading">
+                <div>
+                    <h2>Time Slot Capacity</h2>
+                    <p>Set the maximum visitors allowed per time slot.</p>
+                </div>
+            </div>
+
+            <form id="capacity-form" class="admin-capacity-form">
+
+                <div class="admin-field">
+                    <label for="slot-capacity">
+                        Maximum Visitors per Slot
+                    </label>
+                    <input
+                        type="number"
+                        id="slot-capacity"
+                        min="1"
+                        max="500"
+                        value="30"
+                        required>
+                </div>
+
+                <button type="submit" class="admin-primary-btn">
+                    Save Capacity
+                </button>
+
+            </form>
+
+            <p id="capacity-message" class="admin-message" role="status"></p>
+
+            <div class="admin-slot-info">
+                <p>Current Capacity</p>
+                <h3 id="current-capacity">30</h3>
+                <span>Visitors per time slot</span>
+            </div>
+
+        </section>
+
+        <!-- Staff Management -->
+        <section class="admin-card" id="staff">
+
+            <div class="admin-section-heading">
+                <div>
+                    <h2>Staff Management</h2>
+                    <p>Manage demo staff records.</p>
+                </div>
+            </div>
+
+            <form id="staff-form" class="admin-staff-form">
+
+                <div class="admin-field">
+                    <label for="staff-name">Staff Name</label>
+                    <input
+                        type="text"
+                        id="staff-name"
+                        placeholder="Full name"
+                        maxlength="80"
+                        required>
+                </div>
+
+                <div class="admin-field">
+                    <label for="staff-email">Email</label>
+                    <input
+                        type="email"
+                        id="staff-email"
+                        placeholder="staff@example.com"
+                        required>
+                </div>
+
+                <button type="submit" class="admin-primary-btn">
+                    + Add Staff
+                </button>
+
+            </form>
+
+            <p id="staff-message" class="admin-message" role="status"></p>
+
+            <div class="admin-table-wrap">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-staff-body"></tbody>
+                </table>
+            </div>
+
+            <p id="admin-staff-empty" class="admin-empty" hidden>
+                No staff records added yet.
+            </p>
+
+        </section>
+
+    </main>
+</div>
+
+</body>
+</html>

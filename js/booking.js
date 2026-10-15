@@ -1,5 +1,5 @@
 
-/* Smart Queue - Booking with Capacity */
+/* Smart Queue - Booking with Dynamic Capacity */
 
 const bookingForm = document.getElementById("booking-form");
 
@@ -17,7 +17,24 @@ const bookingMessage = document.getElementById("booking-message");
 const slotAvailability = document.getElementById("slot-availability");
 
 const STORAGE_KEY = "smartQueueBookings";
-const MAX_CAPACITY = 30;
+const CAPACITY_KEY = "smartQueueSlotCapacity";
+
+// Get capacity set by Admin
+function getMaxCapacity() {
+    const saved = localStorage.getItem(CAPACITY_KEY);
+
+    if (saved === null) {
+        return 30;
+    }
+
+    const capacity = Number(saved);
+
+    return Number.isInteger(capacity) &&
+        capacity >= 1 &&
+        capacity <= 500
+        ? capacity
+        : 30;
+}
 
 // Today's local date
 function getLocalDate() {
@@ -30,23 +47,31 @@ function getLocalDate() {
     return `${year}-${month}-${day}`;
 }
 
-// Read bookings
+// Read bookings safely
 function getBookings() {
-    const bookings = JSON.parse(
-        localStorage.getItem(STORAGE_KEY) || "[]"
-    );
+    try {
+        const bookings = JSON.parse(
+            localStorage.getItem(STORAGE_KEY) || "[]"
+        );
 
-    return Array.isArray(bookings) ? bookings : [];
+        return Array.isArray(bookings) ? bookings : [];
+    } catch (error) {
+        return [];
+    }
 }
 
-// Calculate booked visitors
+// Calculate booked visitors for selected date and time
 function getBookedVisitors(date, time) {
     return getBookings()
         .filter(function (booking) {
             return (
                 booking.date === date &&
                 booking.time === time &&
-                booking.status === "Confirmed"
+                (
+                    booking.status === "Confirmed" ||
+                    booking.status === "Checked In" ||
+                    booking.status === "Completed"
+                )
             );
         })
         .reduce(function (total, booking) {
@@ -54,11 +79,24 @@ function getBookedVisitors(date, time) {
         }, 0);
 }
 
-// Available places
+// Calculate available places
 function getAvailablePlaces(date, time) {
     const booked = getBookedVisitors(date, time);
+    const capacity = getMaxCapacity();
 
-    return Math.max(0, MAX_CAPACITY - booked);
+    return Math.max(0, capacity - booked);
+}
+
+// Update maximum capacity text in HTML
+function updateCapacityText() {
+    const capacity = getMaxCapacity();
+
+    const capacityText = document.getElementById("capacity-text");
+
+    if (capacityText) {
+        capacityText.textContent =
+            `Maximum capacity: ${capacity} visitors per time slot. Demo availability only.`;
+    }
 }
 
 // Update available time slots
@@ -70,8 +108,8 @@ function updateTimeSlots() {
     slotAvailability.textContent = "";
     slotAvailability.className = "";
 
+    // Reset all time options
     Array.from(timeInput.options).forEach(function (option) {
-
         if (option.value === "") {
             return;
         }
@@ -80,6 +118,7 @@ function updateTimeSlots() {
         option.textContent = option.value;
     });
 
+    // Validate date
     if (!selectedDate || selectedDate < getLocalDate()) {
         timeInput.value = "";
 
@@ -92,6 +131,7 @@ function updateTimeSlots() {
         return;
     }
 
+    // Validate visitor count
     if (
         !Number.isInteger(visitorCount) ||
         visitorCount < 1 ||
@@ -108,8 +148,8 @@ function updateTimeSlots() {
         return;
     }
 
+    // Calculate availability for each time slot
     Array.from(timeInput.options).forEach(function (option) {
-
         if (option.value === "") {
             return;
         }
@@ -120,25 +160,23 @@ function updateTimeSlots() {
         );
 
         if (available === 0) {
-
             option.disabled = true;
             option.textContent =
                 `${option.value} - Fully Booked`;
 
         } else if (available < visitorCount) {
-
             option.disabled = true;
             option.textContent =
                 `${option.value} - Only ${available} left`;
 
         } else {
-
             option.disabled = false;
             option.textContent =
                 `${option.value} - ${available} spots left`;
         }
     });
 
+    // Keep selected time if it is still available
     const selectedOption = Array.from(timeInput.options).find(
         option => option.value === previousTime
     );
@@ -153,15 +191,15 @@ function updateTimeSlots() {
     updateSummary();
 }
 
-// Availability message
+// Show availability message
 function updateAvailabilityMessage() {
     const date = dateInput.value;
     const time = timeInput.value;
     const visitors = Number(visitorsInput.value);
 
-    if (!date) {
+    if (!date || date < getLocalDate()) {
         slotAvailability.textContent =
-            "Please select a visit date first.";
+            "Please select a valid visit date.";
 
         slotAvailability.className = "warning";
         return;
@@ -195,7 +233,7 @@ function updateAvailabilityMessage() {
     }
 }
 
-// Update summary
+// Update booking summary
 function updateSummary() {
     summaryDate.textContent =
         dateInput.value || "Not selected";
@@ -218,7 +256,11 @@ function updateSummary() {
         summaryVisitors.textContent = "Not selected";
     }
 
-    if (dateInput.value && timeInput.value) {
+    if (
+        dateInput.value &&
+        dateInput.value >= getLocalDate() &&
+        timeInput.value
+    ) {
         const available = getAvailablePlaces(
             dateInput.value,
             timeInput.value
@@ -257,18 +299,25 @@ bookingForm.addEventListener("submit", function (event) {
     const visitors = Number(visitorsInput.value);
     const notes = notesInput.value.trim();
 
+    // Validate date
     if (!visitDate || visitDate < getLocalDate()) {
         bookingMessage.textContent =
             "Please select a valid visit date.";
         return;
     }
 
-    if (!visitTime) {
+    // Validate time
+    const selectedTimeOption = Array.from(timeInput.options).find(
+        option => option.value === visitTime
+    );
+
+    if (!visitTime || !selectedTimeOption) {
         bookingMessage.textContent =
-            "Please select a visit time.";
+            "Please select a valid visit time.";
         return;
     }
 
+    // Validate visitor count
     if (
         !Number.isInteger(visitors) ||
         visitors < 1 ||
@@ -279,6 +328,7 @@ bookingForm.addEventListener("submit", function (event) {
         return;
     }
 
+    // Recheck capacity before saving
     const available = getAvailablePlaces(
         visitDate,
         visitTime
@@ -292,6 +342,7 @@ bookingForm.addEventListener("submit", function (event) {
         return;
     }
 
+    // Create booking
     const booking = {
         id: "SQ-" + Date.now(),
         museum: "Children's Museum Jordan",
@@ -321,8 +372,26 @@ bookingForm.addEventListener("submit", function (event) {
     }
 });
 
+// Refresh when Admin changes data in another tab
+window.addEventListener("storage", function (event) {
+    if (
+        event.key === CAPACITY_KEY ||
+        event.key === STORAGE_KEY
+    ) {
+        updateCapacityText();
+        updateTimeSlots();
+    }
+});
+
+// Refresh when returning to the page
+window.addEventListener("focus", function () {
+    updateCapacityText();
+    updateTimeSlots();
+});
+
 // Initial setup
 dateInput.min = getLocalDate();
 
+updateCapacityText();
 updateTimeSlots();
 updateSummary();

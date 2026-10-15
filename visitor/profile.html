@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile | Smart Queue</title>
+
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/booking.css">
+    <link rel="stylesheet" href="../css/profile.css">
+    <script src="../js/profile.js" defer></script>
+</head>
+<body>
+
+<div class="visitor-layout">
+
+    <aside class="visitor-sidebar">
+        <a href="../index.html" class="visitor-logo">
+            <img src="../asstes/imgs/logo.png" alt="Logo">
+            <h2>Smart<span>Queue</span></h2>
+        </a>
+
+        <p class="sidebar-label">VISITOR PORTAL</p>
+
+        <nav class="sidebar-links">
+            <a href="booking.html">📅 Book a Visit</a>
+            <a href="my-bookings.html">🎟️ My Bookings</a>
+            <a href="live-queue.html">⏳ Live Queue</a>
+            <a href="profile.html" class="active">👤 My Profile</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <a href="../index.html">← Back to Home</a>
+            <a href="../pages/login.html">Log Out</a>
+        </div>
+    </aside>
+
+    <main class="visitor-main">
+
+        <header class="visitor-header">
+            <div>
+                <p class="page-label">VISITOR PORTAL</p>
+                <h1>My Profile</h1>
+                <p class="page-description">
+                    Manage your personal information.
+                </p>
+            </div>
+            <div class="visitor-avatar" id="header-avatar">V</div>
+        </header>
+
+        <section class="profile-card">
+
+            <div class="profile-top">
+                <div class="profile-avatar" id="profile-avatar">V</div>
+                <div>
+                    <h2 id="display-name">Visitor</h2>
+                    <p id="display-email">visitor@example.com</p>
+                    <span class="profile-role">Visitor Account</span>
+                </div>
+            </div>
+
+            <div class="profile-divider"></div>
+
+            <h2>Personal Information</h2>
+            <p class="profile-description">
+                Update your details below.
+            </p>
+
+            <form id="profile-form">
+
+                <div class="profile-fields">
+                    <div class="profile-group">
+                        <label for="full-name">Full Name</label>
+                        <input type="text" id="full-name"
+                               placeholder="Enter your full name"
+                               maxlength="80" required>
+                    </div>
+
+                    <div class="profile-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email"
+                               placeholder="Enter your email" required>
+                    </div>
+
+                    <div class="profile-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone"
+                               placeholder="e.g. 0791234567"
+                               maxlength="20">
+                    </div>
+                </div>
+
+                <p id="profile-message" role="status"></p>
+
+                <button type="submit" class="save-profile-btn">
+                    Save Changes
+                </button>
+
+            </form>
+        </section>
+
+        <section class="profile-info-card">
+            <h2>Account Information</h2>
+
+            <div class="profile-info-row">
+                <span>Account Type</span>
+                <strong>Visitor</strong>
+            </div>
+
+            <div class="profile-info-row">
+                <span>Total Bookings</span>
+                <strong id="profile-bookings">0</strong>
+            </div>
+
+            <div class="profile-info-row">
+                <span>Account Mode</span>
+                <strong>Demo</strong>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,403 @@
+
+/* =========================================
+   Smart Queue - Staff Dashboard
+========================================= */
+
+/* Demo Notice */
+
+.staff-demo-notice {
+    background: #E5F5F0;
+    color: #087F77;
+    padding: 15px 20px;
+    border-radius: 12px;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+/* =========================================
+   Dashboard Statistics
+========================================= */
+
+.staff-stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+    margin-bottom: 25px;
+}
+
+.staff-stat,
+.staff-card {
+    background: white;
+    border-radius: 18px;
+    padding: 25px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.staff-stat p {
+    color: #64817E;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.staff-stat h2 {
+    color: #134E4A;
+    font-family: 'Outfit', sans-serif;
+    font-size: 34px;
+}
+
+.staff-card {
+    margin-bottom: 25px;
+}
+
+/* =========================================
+   Section Headers
+========================================= */
+
+.staff-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.staff-section-header h2 {
+    color: #134E4A;
+    font-size: 23px;
+    font-family: 'Outfit', sans-serif;
+    margin-bottom: 8px;
+}
+
+.staff-section-header p,
+.staff-empty {
+    color: #64817E;
+    font-size: 14px;
+}
+
+/* =========================================
+   Filters and Form Inputs
+========================================= */
+
+.staff-filter {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 22px;
+}
+
+.staff-filter label {
+    color: #134E4A;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.staff-filter select,
+#checkin-booking-id {
+    width: 100%;
+    max-width: 370px;
+    padding: 12px;
+    border: 1px solid #D5E5E0;
+    border-radius: 10px;
+    color: #134E4A;
+    background: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    outline: none;
+}
+
+.staff-filter select:focus,
+#checkin-booking-id:focus {
+    border-color: #0D9488;
+    box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.12);
+}
+
+#checkin-booking-id::placeholder {
+    color: #91A7A2;
+}
+
+/* =========================================
+   Reservations Table
+========================================= */
+
+.staff-table-wrap {
+    overflow-x: auto;
+}
+
+.staff-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.staff-table th,
+.staff-table td {
+    padding: 15px 12px;
+    border-bottom: 1px solid #E6EFEC;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.staff-table th {
+    color: #64817E;
+    font-weight: 700;
+}
+
+.staff-table td {
+    color: #134E4A;
+}
+
+/* =========================================
+   Reservation Status
+========================================= */
+
+.staff-status {
+    display: inline-block;
+    padding: 7px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    background: #E5F5F0;
+    color: #087F77;
+}
+
+.staff-status.cancelled {
+    background: #FCE8E6;
+    color: #B42318;
+}
+
+.staff-status.completed {
+    background: #E8EDF7;
+    color: #385B91;
+}
+
+.staff-status.checked-in {
+    background: #DDF3FD;
+    color: #176B93;
+}
+
+/* =========================================
+   Staff Buttons
+========================================= */
+
+.staff-primary-btn,
+.staff-secondary-btn,
+.staff-action-btn {
+    padding: 11px 16px;
+    border-radius: 9px;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background-color 0.3s ease;
+}
+
+.staff-primary-btn,
+.staff-action-btn {
+    background: #0D9488;
+    color: white;
+}
+
+.staff-secondary-btn {
+    background: #E5F5F0;
+    color: #087F77;
+}
+
+.staff-primary-btn:hover,
+.staff-action-btn:hover {
+    background: #0F766E;
+}
+
+.staff-secondary-btn:hover {
+    background: #D1EBE4;
+}
+
+.staff-primary-btn:disabled,
+.staff-secondary-btn:disabled,
+.staff-action-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* =========================================
+   QR Code Check-in Section
+========================================= */
+
+/* Action Buttons */
+
+.staff-checkin-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+/* QR Scanner Container */
+
+#qr-reader {
+    width: 100%;
+    max-width: 450px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #D5E5E0;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #F3F8F6;
+}
+
+/* Hide Scanner When Inactive */
+
+#qr-reader[hidden],
+#stop-scan-btn[hidden] {
+    display: none;
+}
+
+/* QR Scanner Video */
+
+#qr-reader video {
+    width: 100%;
+    border-radius: 12px;
+}
+
+/* QR Scanner Internal Elements */
+
+#qr-reader img {
+    max-width: 100%;
+}
+
+#qr-reader button {
+    background: #0D9488;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 14px;
+    cursor: pointer;
+}
+
+/* Check-in Result Message */
+
+#checkin-result {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.6;
+    margin-top: 15px;
+    min-height: 22px;
+    color: #134E4A;
+}
+
+#checkin-result:empty {
+    display: none;
+}
+
+/* =========================================
+   Empty States
+========================================= */
+
+.staff-empty {
+    padding: 15px 0;
+}
+
+.staff-empty[hidden],
+#staff-queue-panel[hidden] {
+    display: none;
+}
+
+/* =========================================
+   Queue Management
+========================================= */
+
+.staff-queue-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.staff-queue-stats > div {
+    padding: 20px;
+    background: #F3F8F6;
+    border-radius: 12px;
+}
+
+.staff-queue-stats span {
+    display: block;
+    color: #64817E;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.staff-queue-stats strong {
+    color: #134E4A;
+    font-size: 30px;
+}
+
+#staff-queue-message {
+    color: #134E4A;
+    margin-bottom: 18px;
+    font-size: 14px;
+}
+
+/* =========================================
+   Tablet Responsive
+========================================= */
+
+@media (max-width: 1100px) {
+
+    .staff-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .staff-card {
+        padding: 22px;
+    }
+
+}
+
+/* =========================================
+   Mobile Responsive
+========================================= */
+
+@media (max-width: 700px) {
+
+    .staff-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .staff-stat,
+    .staff-card {
+        padding: 18px;
+    }
+
+    .staff-stat h2 {
+        font-size: 28px;
+    }
+
+    .staff-section-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .staff-queue-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .staff-checkin-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .staff-checkin-actions button {
+        width: 100%;
+    }
+
+    #checkin-booking-id {
+        max-width: 100%;
+    }
+
+    #qr-reader {
+        max-width: 100%;
+    }
+
+}

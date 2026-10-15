@@ -1,4 +1,8 @@
 
+/* =========================================
+   Smart Queue - My Bookings Page
+========================================= */
+
 /* Booking Statistics */
 
 .booking-stats {
@@ -27,7 +31,9 @@
     color: #134E4A;
 }
 
-/* Bookings Section */
+/* =========================================
+   Bookings Section
+========================================= */
 
 .bookings-section {
     background-color: white;
@@ -73,7 +79,9 @@
     background-color: #0F766E;
 }
 
-/* Booking Cards */
+/* =========================================
+   Booking Cards
+========================================= */
 
 .bookings-container {
     display: grid;
@@ -103,6 +111,10 @@
     overflow-wrap: anywhere;
 }
 
+/* =========================================
+   Booking Status
+========================================= */
+
 .booking-status {
     display: inline-block;
     padding: 8px 14px;
@@ -111,15 +123,37 @@
     font-weight: 700;
 }
 
+/* Confirmed */
+
 .booking-status.confirmed {
     background-color: #D8F3EF;
     color: #087F77;
 }
 
+/* Cancelled */
+
 .booking-status.cancelled {
     background-color: #FDE8E7;
     color: #C0392B;
 }
+
+/* Checked In */
+
+.booking-status.checked-in {
+    background-color: #DDF3FD;
+    color: #176B93;
+}
+
+/* Completed */
+
+.booking-status.completed {
+    background-color: #E8EDF7;
+    color: #385B91;
+}
+
+/* =========================================
+   Booking Details
+========================================= */
 
 .booking-details {
     display: grid;
@@ -139,6 +173,10 @@
     overflow-wrap: anywhere;
 }
 
+/* =========================================
+   Booking Actions
+========================================= */
+
 .booking-actions {
     display: flex;
     gap: 12px;
@@ -147,6 +185,8 @@
     padding-top: 18px;
     border-top: 1px solid #E6EFEC;
 }
+
+/* Cancel Button */
 
 .cancel-booking-btn {
     background-color: #FDE8E7;
@@ -158,6 +198,7 @@
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .cancel-booking-btn:hover {
@@ -169,7 +210,28 @@
     cursor: not-allowed;
 }
 
-/* Empty State */
+/* Show QR Code Button */
+
+.show-qr-btn {
+    border: none;
+    border-radius: 9px;
+    padding: 11px 16px;
+    background-color: #E5F5F0;
+    color: #087F77;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.show-qr-btn:hover {
+    background-color: #D1EBE4;
+}
+
+/* =========================================
+   Empty State
+========================================= */
 
 .empty-bookings {
     text-align: center;
@@ -198,6 +260,8 @@
     margin-bottom: 25px;
 }
 
+/* Booking Messages */
+
 #bookings-message {
     color: #C0392B;
     font-size: 14px;
@@ -208,9 +272,118 @@
     display: none;
 }
 
-/* Tablet */
+/* =========================================
+   QR Code Modal
+========================================= */
+
+/* Hide Modal */
+
+.qr-modal[hidden] {
+    display: none;
+}
+
+/* Modal Background */
+
+.qr-modal {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.55);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 1000;
+    padding: 20px;
+}
+
+/* Modal Card */
+
+.qr-modal-content {
+    position: relative;
+    background-color: white;
+    border-radius: 20px;
+    padding: 35px;
+    text-align: center;
+    width: 100%;
+    max-width: 390px;
+
+    max-height: 90vh;
+    overflow-y: auto;
+
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.15);
+}
+
+/* Modal Heading */
+
+.qr-modal-content h2 {
+    font-family: 'Outfit', sans-serif;
+    color: #134E4A;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.qr-modal-content p {
+    color: #64817E;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+/* Close Button */
+
+.qr-close {
+    position: absolute;
+    right: 18px;
+    top: 12px;
+
+    border: none;
+    background: transparent;
+
+    font-size: 30px;
+    cursor: pointer;
+    color: #134E4A;
+
+    transition: color 0.3s ease;
+}
+
+.qr-close:hover {
+    color: #C0392B;
+}
+
+/* QR Code Container */
+
+#booking-qr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+/* QR Image */
+
+#booking-qr img,
+#booking-qr canvas {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Booking ID */
+
+#qr-booking-id {
+    display: block;
+    color: #087F77;
+    font-size: 15px;
+    font-weight: 700;
+    margin-top: 15px;
+    overflow-wrap: anywhere;
+}
+
+/* =========================================
+   Tablet Responsive
+========================================= */
 
 @media (max-width: 1100px) {
+
     .booking-stats {
         gap: 12px;
     }
@@ -222,11 +395,15 @@
     .bookings-section {
         padding: 24px;
     }
+
 }
 
-/* Mobile */
+/* =========================================
+   Mobile Responsive
+========================================= */
 
 @media (max-width: 700px) {
+
     .booking-stats {
         grid-template-columns: 1fr;
         gap: 12px;
@@ -261,4 +438,26 @@
     .booking-item {
         padding: 18px;
     }
+
+    .booking-actions {
+        flex-direction: column;
+    }
+
+    .show-qr-btn,
+    .cancel-booking-btn {
+        width: 100%;
+    }
+
+    .qr-modal-content {
+        padding: 28px 20px;
+    }
+
+    .qr-modal-content h2 {
+        font-size: 21px;
+    }
+
+    #booking-qr {
+        margin: 18px 0;
+    }
+
 }

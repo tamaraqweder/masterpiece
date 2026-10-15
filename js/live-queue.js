@@ -1,6 +1,10 @@
 
-/* Smart Queue - Visitor Live Queue */
-/* Read-only demo queue */
+/* =========================================
+   Smart Queue - Visitor Live Queue
+   Read-only queue linked to Staff Dashboard
+========================================= */
+
+/* Elements */
 
 const bookingSelect = document.getElementById("queue-booking-select");
 
@@ -23,13 +27,20 @@ const visitDateText = document.getElementById("queue-visit-date");
 const visitTimeText = document.getElementById("queue-visit-time");
 const visitorsText = document.getElementById("queue-visitors");
 
+/* Storage Keys */
+
 const BOOKINGS_KEY = "smartQueueBookings";
 const QUEUE_KEY = "smartQueueDemoQueues";
 
-let selectedBooking = null;
+/* State */
+
+let selectedBookingId = "";
 let queueData = {};
 
-// Load confirmed bookings
+/* =========================================
+   Load Bookings
+========================================= */
+
 function loadBookings() {
     try {
         const bookings = JSON.parse(
@@ -40,16 +51,23 @@ function loadBookings() {
             return [];
         }
 
-        return bookings.filter(
-            booking => booking.status === "Confirmed"
-        );
+        // Show confirmed and checked-in bookings
+        return bookings.filter(function (booking) {
+            return (
+                booking.status === "Confirmed" ||
+                booking.status === "Checked In"
+            );
+        });
 
     } catch (error) {
         return [];
     }
 }
 
-// Load demo queue progress
+/* =========================================
+   Load Queue Data
+========================================= */
+
 function loadQueueData() {
     try {
         const saved = JSON.parse(
@@ -71,39 +89,64 @@ function loadQueueData() {
     }
 }
 
-// Generate a consistent demo queue number
+/* =========================================
+   Demo Queue Number
+========================================= */
+
+// Same formula used by Staff Dashboard
+
 function getDemoQueueNumber(bookingId) {
-    const text = String(bookingId);
     let total = 0;
 
-    for (const character of text) {
+    for (const character of String(bookingId)) {
         total += character.charCodeAt(0);
     }
 
     return 5 + (total % 21);
 }
 
-// Get queue information for booking
+/* =========================================
+   Get Booking Queue
+========================================= */
+
 function getBookingQueue(booking) {
-    const id = booking.id;
+    const savedQueue = queueData[booking.id];
 
-    if (!queueData[id]) {
-        const position = getDemoQueueNumber(id);
-
-        // Initial demo state
-        queueData[id] = {
-            position: position,
-            serving: 1
-        };
+    if (savedQueue) {
+        return savedQueue;
     }
 
-    return queueData[id];
+    // Fallback for a checked-in booking
+    return {
+        position: getDemoQueueNumber(booking.id),
+        serving: 1
+    };
 }
 
-// Display queue
-function renderQueue() {
+/* =========================================
+   Display Booking Details
+========================================= */
 
-    if (!selectedBooking) {
+function renderBookingDetails(booking) {
+    bookingIdText.textContent = booking.id;
+    visitDateText.textContent = booking.date;
+    visitTimeText.textContent = booking.time;
+
+    visitorsText.textContent =
+        `${booking.visitors} visitor(s)`;
+}
+
+/* =========================================
+   Render Queue
+========================================= */
+
+function renderQueue() {
+    const booking = loadBookings().find(
+        item => item.id === selectedBookingId
+    );
+
+    // No booking selected
+    if (!booking) {
         queueEmpty.hidden = false;
         queueDashboard.hidden = true;
         return;
@@ -112,7 +155,35 @@ function renderQueue() {
     queueEmpty.hidden = true;
     queueDashboard.hidden = false;
 
-    const queue = getBookingQueue(selectedBooking);
+    renderBookingDetails(booking);
+
+    /* Before Check-in */
+
+    if (booking.status === "Confirmed") {
+        yourQueueNumber.textContent = "--";
+        nowServing.textContent = "--";
+        groupsAhead.textContent = "--";
+
+        progressFill.style.width = "0%";
+        progressPercent.textContent = "0%";
+
+        progressTrack.setAttribute(
+            "aria-valuenow",
+            "0"
+        );
+
+        queueStatus.textContent = "Not Checked In";
+        queueStatus.classList.remove("ready");
+
+        queueMessage.textContent =
+            "Your booking is confirmed. Show your QR code to staff when you arrive to join the live queue.";
+
+        return;
+    }
+
+    /* After Check-in */
+
+    const queue = getBookingQueue(booking);
 
     const position = Number(queue.position);
 
@@ -129,7 +200,7 @@ function renderQueue() {
             ((serving - 1) / (position - 1)) * 100
         );
 
-    // Statistics
+    // Queue statistics
     yourQueueNumber.textContent = position;
     nowServing.textContent = serving;
     groupsAhead.textContent = ahead;
@@ -145,35 +216,30 @@ function renderQueue() {
 
     // Queue status
     if (ahead === 0) {
-
         queueStatus.textContent = "Your Turn";
         queueStatus.classList.add("ready");
 
         queueMessage.textContent =
-            "It's your turn in this demo queue!";
+            "It's your turn! Please proceed to the staff.";
 
     } else {
-
         queueStatus.textContent = "Waiting";
         queueStatus.classList.remove("ready");
 
         queueMessage.textContent =
             `${ahead} demo group(s) ahead of you.`;
     }
-
-    // Visit details
-    bookingIdText.textContent = selectedBooking.id;
-    visitDateText.textContent = selectedBooking.date;
-    visitTimeText.textContent = selectedBooking.time;
-
-    visitorsText.textContent =
-        selectedBooking.visitors + " visitor(s)";
 }
 
-// Fill booking dropdown
-function initializeBookings() {
+/* =========================================
+   Initialize Booking Dropdown
+========================================= */
 
+function initializeBookings() {
     const bookings = loadBookings();
+
+    // Keep previous selection if still available
+    const previousSelection = selectedBookingId;
 
     bookingSelect.replaceChildren();
 
@@ -184,7 +250,6 @@ function initializeBookings() {
     bookingSelect.appendChild(placeholder);
 
     bookings.forEach(function (booking) {
-
         const option = document.createElement("option");
 
         option.value = booking.id;
@@ -195,37 +260,74 @@ function initializeBookings() {
         bookingSelect.appendChild(option);
     });
 
-    if (bookings.length > 0) {
+    if (
+        previousSelection &&
+        bookings.some(
+            booking => booking.id === previousSelection
+        )
+    ) {
+        selectedBookingId = previousSelection;
 
-        selectedBooking = bookings[bookings.length - 1];
+    } else if (bookings.length > 0) {
+        // Prefer most recently checked-in booking
+        const checkedInBookings = bookings.filter(
+            booking => booking.status === "Checked In"
+        );
 
-        bookingSelect.value = selectedBooking.id;
+        const preferredBookings = checkedInBookings.length > 0
+            ? checkedInBookings
+            : bookings;
+
+        selectedBookingId =
+            preferredBookings[preferredBookings.length - 1].id;
 
     } else {
-        selectedBooking = null;
+        selectedBookingId = "";
     }
+
+    bookingSelect.value = selectedBookingId;
 
     renderQueue();
 }
 
-// Change selected booking
+/* =========================================
+   Change Selected Booking
+========================================= */
+
 bookingSelect.addEventListener("change", function () {
-
-    const bookings = loadBookings();
-
-    selectedBooking = bookings.find(
-        booking => booking.id === bookingSelect.value
-    ) || null;
+    selectedBookingId = bookingSelect.value;
 
     renderQueue();
 });
 
-// Refresh display when returning to this tab
-window.addEventListener("focus", function () {
+/* =========================================
+   Refresh Queue Data
+========================================= */
+
+function refreshQueue() {
     queueData = loadQueueData();
+
     initializeBookings();
+}
+
+// Refresh when returning to the page
+window.addEventListener("focus", refreshQueue);
+
+// Refresh when another tab changes bookings or queue
+window.addEventListener("storage", function (event) {
+    if (
+        event.key === BOOKINGS_KEY ||
+        event.key === QUEUE_KEY
+    ) {
+        refreshQueue();
+    }
 });
 
-// Start page
-queueData = loadQueueData();
-initializeBookings();
+// Refresh when returning using browser navigation
+window.addEventListener("pageshow", refreshQueue);
+
+/* =========================================
+   Initial Display
+========================================= */
+
+refreshQueue();

@@ -12,7 +12,14 @@
     <link rel="stylesheet" href="../css/booking.css">
     <link rel="stylesheet" href="../css/my-bookings.css">
 
-    <script src="../js/my-bookings.js" defer></script>
+   <!-- QR Code Library -->
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
+    defer>
+</script>
+
+<!-- My Bookings JavaScript -->
+<script src="../js/my-bookings.js" defer></script>
 </head>
 
 <body>
@@ -128,6 +135,24 @@
         </main>
 
     </div>
+
+
+    
+<div id="qr-modal" class="qr-modal" hidden>
+    <div class="qr-modal-content">
+        <button id="close-qr" class="qr-close" type="button">
+            &times;
+        </button>
+
+        <h2>Your Booking QR Code</h2>
+        <p>Show this code to staff when you arrive.</p>
+
+        <div id="booking-qr"></div>
+
+        <strong id="qr-booking-id"></strong>
+    </div>
+</div>
+
 
 </body>
 </html>
